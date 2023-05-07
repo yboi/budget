@@ -1,17 +1,77 @@
 <html>
 <head>
     <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+        form {
+            width: 300px;
+            margin: 0 auto;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        label {
+            font-size: 14px;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+        button[type="button"] {
+            background-color: #008CBA;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button[type="button"]:hover {
+            background-color: #0076A3;
+        }
+        #message {
+            text-align: center;
+            margin-top: 10px;
+            color: red;
+        }
+    </style>
 </head>
 <body>
     <h1>Login</h1>
     <form method="POST">
-        <label>Username:</label><br>
+        <label>User Name:</label><br>
         <input type="text" name="username"><br>
         <label>Password:</label><br>
         <input type="password" name="password"><br>
         <input type="submit" value="Login">
+        <button type="button">Register</button>
+        <br><br>
+        <input type="button" value="Forgot Password?" onclick="location.href='/forgot_password.html';">
     </form>
     <div id="message">{{ message }}</div>
 </body>
 </html>
-

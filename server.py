@@ -3,6 +3,7 @@ import socketserver
 import xml.etree.ElementTree as ET
 
 # Read the users from the XML file
+# TODO SQLite with SQLAlechemy for data. Work on a database schema and then implement it. SQLAlchemy: https://docs.sqlalchemy.org/en/20
 tree = ET.parse('users.xml')
 users = tree.findall('user')
 
@@ -20,10 +21,12 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
             if user.attrib['username'] == username and user.attrib['password'] == password:
                 # If the username and password are valid, set the response message to "Login success"
                 message = "Login success"
+                # TODO here must be redirect to home page
                 break
         else:
             # If the username and password are not valid, set the response message to "Invalid username or password"
             message = "Invalid username or password"
+
 
         # Fill in the message in the login.html template and send the response
         with open('login.html', 'rb') as f:
@@ -33,6 +36,7 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
             self.send_header('Content-type', 'text/html')
             self.end_headers()
             self.wfile.write(template.encode('utf-8'))
+
 
 # Start the HTTP server
 with socketserver.TCPServer(("", 8000), RequestHandler) as httpd:
