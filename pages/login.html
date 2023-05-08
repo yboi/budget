@@ -68,9 +68,11 @@
         <label>Password:</label><br>
         <input type="password" name="password"><br>
         <input type="submit" value="Login">
-        <button type="button">Register</button>
+        <button type="button" value="Register" onclick="location.href='/pages/register.html';">Register</button>
+<!--        <button type="button">Register</button>-->
         <br><br>
-        <input type="button" value="Forgot Password?" onclick="location.href='/forgot_password.html';">
+        <button type="button" value="Forgot Password?" onclick="location.href='/pages/forgot.html';">Forgot Password?</button>
+<!--        <input type="button" value="Forgot Password?" onclick="location.href='/forgot.html';">-->
     </form>
     <div id="message">{{ message }}</div>
 </body>
