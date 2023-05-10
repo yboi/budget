@@ -8,7 +8,7 @@ import database
 
 # create the Flask application instance
 app = Flask(__name__)
-# http://localhost:8000/Pages/login.html
+# http://localhost:8000/login.html
 # Read the users from the XML file
 # TODO SQLite with SQLAlechemy for data. Work on a database schema and then implement it. SQLAlchemy: https://docs.sqlalchemy.org/en/20
 tree = ET.parse('users.xml')
@@ -35,7 +35,7 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
             message = "Invalid username or password"
 
         # Fill in the message in the login.html template and send the response
-        with open('pages/login.html', 'rb') as f:
+        with open('login.html', 'rb') as f:
             template = f.read().decode('utf-8')
             template = template.replace('{{ message }}', message)
             self.send_response(200)
@@ -69,7 +69,7 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
             return redirect('/success')
 
         # Fill in the message in the register.html template and send the response
-        with open('pages/register.html', 'rb') as f:
+        with open('register.html', 'rb') as f:
             template = f.read().decode('utf-8')
             template = template.replace('{{ message }}', message)
             self.send_response(200)
@@ -78,7 +78,7 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
             self.wfile.write(template.encode('utf-8'))
 
     def display_forgot_page(self):
-        with open('pages/forgot.html', 'rb') as f:
+        with open('forgot.html', 'rb') as f:
             template = f.read().decode('utf-8')
             self.send_response(200)
             self.send_header('Content-type', 'text/html')
