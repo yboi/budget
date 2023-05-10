@@ -12,7 +12,7 @@ session = Session()
 Base = declarative_base()
 
 # user credentials
-login = input("What login name you wanna to use:\n")
+login = input("What login you wanna to use:\n")
 user_name = input("Enter your name:\n")
 email = input("Enter your email:\n")
 password = input("Enter you password\n")
@@ -32,22 +32,24 @@ class User(Base):
 # create the table
 Base.metadata.create_all(engine)
 
+
 # define a method to insert a new user
-def create_user(user_name, login, email, password):
-    if check_if_login_is_available(login=login):
+def create_user(login, user_name, email, password):
+    if check_if_login_is_available(login):
         raise ValueError("Login already exists")
     session = Session()
     user = User(
-        user_name=user_name,
         login=login,
+        user_name=user_name,
         email=email,
         password=password
     )
     session.add(user)
     session.commit()
     session.close()
-    print(f'User {user_name}  with {email} created successfully!')
+    print(f'User {user_name}  with {email}, login {login} - created successfully!')
     print_table()
+
 
 def check_if_login_is_available(login):
     users = session.query(User).all()
@@ -57,10 +59,12 @@ def check_if_login_is_available(login):
             print(message)
             return True
 
+
 def print_table():
     users = session.query(User).all()
     for user in users:
-        print(f"ID: {user.id}, Name: {user.user_name}, Email: {user.email}")
+        print(f"ID: {user.id}, Name: {user.user_name}, Login: {user.login}, Email: {user.email}")
+
 
 # insert a new user
 create_user(login, user_name, email, password)
