@@ -1,6 +1,6 @@
-from models import CreateUser
+from models import User
 
-CreateUser(
+User(
     login=input("What login name you wanna to use:\n"),
     user_name=input("Enter your name:\n"),
     email=input("Enter your email:\n"),

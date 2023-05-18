@@ -1,9 +1,8 @@
 import os.path
+from config import db_name
 from sqlalchemy import create_engine
-from sqlalchemy.orm import declarative_base
+from models import Base
 
-Base = declarative_base()
-db_name = "main.db"
 engine = create_engine(f"sqlite:///{db_name}")
 
 if os.path.isfile(db_name):
