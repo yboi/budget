@@ -16,12 +16,3 @@ class User(Base):
     user_name: Mapped[str] = mapped_column(String(30))
     email: Mapped[str] = mapped_column(String(30))
     password: Mapped[str] = mapped_column(String(30))
-
-
-        # with Session() as session:
-        #     user = session.query().filter_by(login=login).first()
-        #     if user:
-        #         raise ValueError("Login already exists")
-        #     session.add()
-        #     session.commit()
-        #     print(f"User {user_name} with email {email} created successfully! (login:{login}  password:{password})")

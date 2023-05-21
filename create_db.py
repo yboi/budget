@@ -10,3 +10,5 @@ if os.path.isfile(db_name):
 else:
     Base.metadata.create_all(engine)
     print("DB is not found")
+
+Base.metadata.create_all(engine)
