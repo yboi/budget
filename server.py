@@ -24,19 +24,23 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         """Handle a POST request."""
-        content_length = int(self.headers["Content-Length"])
-        post_data = self.rfile.read(content_length)
-        parsed_data = parse_qs(post_data.decode())
-        # Process the post_data
-        with Session() as session:
-            new_user = User(
-                login=parsed_data["login"][0],
-                user_name=parsed_data["user_name"][0],
-                email=parsed_data["email"][0],
-                password=parsed_data["password"][0]
-            )
-        session.add(new_user)
-        session.commit()
+        if self.path == "/register.html":
+            content_length = int(self.headers["Content-Length"])
+            post_data = self.rfile.read(content_length)
+            parsed_data = parse_qs(post_data.decode())
+            # Process the post_data
+            with Session() as session:
+                new_user = User(
+                    login=parsed_data["login"][0],
+                    user_name=parsed_data["user_name"][0],
+                    email=parsed_data["email"][0],
+                    password=parsed_data["password"][0]
+                )
+            session.add(new_user)
+            session.commit()
+            self.send_response(301)
+            self.send_header("Location", "/login.html")
+            self.end_headers()
 
 
 server = HTTPServer(("", 8000), Handler)
