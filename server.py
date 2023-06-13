@@ -21,6 +21,16 @@ class Handler(BaseHTTPRequestHandler):
                 self.send_response(200)
                 self.end_headers()
                 shutil.copyfileobj(f, self.wfile)
+        elif self.path == "/login.html":
+            with open("login.html", "rb") as f:
+                self.send_response(200)
+                self.end_headers()
+                shutil.copyfileobj(f, self.wfile)
+        elif self.path == "/home_page.html":
+            with open("home_page.html", "rb") as f:
+                self.send_response(200)
+                self.end_headers()
+                shutil.copyfileobj(f, self.wfile)
 
     def do_POST(self):
         """Handle a POST request."""
@@ -40,6 +50,10 @@ class Handler(BaseHTTPRequestHandler):
             session.commit()
             self.send_response(301)
             self.send_header("Location", "/login.html")
+            self.end_headers()
+        elif self.path == "/login.html":
+            self.send_response(301)
+            self.send_header("Location", "/home_page.html")
             self.end_headers()
 
 
